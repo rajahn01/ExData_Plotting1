@@ -1,6 +1,5 @@
 #Read in the data
 data<-read.csv("household_power_consumption.txt", header=TRUE, sep=";")
-library(dplyr)
 
 # Create a new data frame which only includes the first two days of February 2007
 graphData <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
