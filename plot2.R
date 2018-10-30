@@ -6,7 +6,6 @@ graphData <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
 
 
 #Convert my data into useful formats
-globalActivePower <- as.numeric(graphData$Global_active_power)
 graphData$Date <- as.Date(graphData$Date, format="%d/%m/%Y")
 graphData$Time <- format(graphData$Time, format="%H:%M:%S")
 graphData$Global_active_power <- as.numeric(graphData$Global_active_power)
