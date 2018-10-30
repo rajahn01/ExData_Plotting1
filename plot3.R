@@ -1,19 +1,15 @@
-getwd()
-setwd("OneDrive/Coursera/Data")
+#Read in the data
 data<-read.csv("household_power_consumption.txt", header=TRUE, sep=";")
-library(dplyr)
 
+#Select the data needed for the assignment
 graphData <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
 
-globalActivePower <- as.numeric(graphData$Global_active_power)
-png("plot1.png", width=480, height=480)
-hist(globalActivePower, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
-dev.off() 
+
 
 
 #Convert my data into useful formats
 
-
+globalActivePower <- as.numeric(graphData$Global_active_power)
 graphData$Date <- as.Date(graphData$Date, format="%d/%m/%Y")
 graphData$Time <- format(graphData$Time, format="%H:%M:%S")
 graphData$Global_active_power <- as.numeric(graphData$Global_active_power)
@@ -29,7 +25,7 @@ graphData$Sub_metering_3 <- as.numeric(graphData$Sub_metering_3)
 TimeDatevar <- strptime(paste(graphData$Date, graphData$Time, sep=" "), "%d/%m/%Y %H:%M:%S")
 graphData <- cbind(graphData, TimeDatevar)
 
-
+##Plot the charts
 png("plot3.png", width=480, height=480)
 with(graphData, plot(TimeDatevar, Sub_metering_1, type="l", xlab="Day", ylab="Energy sub metering"))
 lines(graphData$TimeDatevar, graphData$Sub_metering_2,type="l", col= "red")
